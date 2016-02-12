@@ -10,6 +10,7 @@ export GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:-'/usr/lib/go'}
 IN=${PWD}/${1}
 OUT=${PWD}/${2}
 
+export GOROOT_FINAL=${OUT}
+
 cd ${IN}/src
 ./make.bash
-cp -a ${IN}/bin ${IN}/pkg ${IN}/src ${OUT}
