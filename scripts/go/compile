@@ -5,9 +5,10 @@ set -o nounset
 set -o xtrace
 
 IN=${PWD}/${1}
-OUT=${PWD}/${2}
-TAG_FILE=${PWD}/${3}
-TAG=${TAG:-$(cat ${TAG_FILE})}
+METADATA=${PWD}/${2}
+OUT=${PWD}/${3}
+
+TAG=${TAG:-$(cat ${METADATA}/version)}
 
 export CGO_ENABLED=0
 export GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:-'/usr/lib/go'}
