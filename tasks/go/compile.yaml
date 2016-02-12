@@ -1,6 +1,6 @@
 ---
 platform: linux
-image: docker:///lang/go:build
+image: docker:///lang/go#build
 inputs:
   - name: ci
   - name: src
