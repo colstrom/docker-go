@@ -11,5 +11,5 @@ IN=${PWD}/${1}
 OUT=${PWD}/${2}
 
 cd ${IN}/src
-make.bash
+./make.bash
 cp -a ${IN}/bin ${IN}/pkg ${IN}/src ${OUT}
