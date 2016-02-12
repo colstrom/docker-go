@@ -4,6 +4,9 @@ set -o errexit
 set -o nounset
 set -o xtrace
 
+export CGO_ENABLED=0
+export GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:-'/usr/lib/go'}
+
 IN=${PWD}/${1}
 OUT=${PWD}/${2}
 
