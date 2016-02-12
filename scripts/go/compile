@@ -17,3 +17,4 @@ export GOROOT_FINAL=/usr/lib/go
 cd ${IN}/src
 git checkout ${TAG}
 ./all.bash
+cp -a ${IN}/bin ${IN}/pkg ${IN}/src ${OUT}
