@@ -12,7 +12,7 @@ TAG=${TAG:-$(cat ${METADATA}/version)}
 
 export CGO_ENABLED=0
 export GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:-'/usr/lib/go'}
-export GOROOT_FINAL=${OUT}
+export GOROOT_FINAL=/usr/lib/go
 
 cd ${IN}/src
 git checkout ${TAG}
