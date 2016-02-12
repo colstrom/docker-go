@@ -5,9 +5,10 @@ set -o nounset
 set -o xtrace
 
 IN=${PWD}/${1}
-OUT=${PWD}/${2}
+TARGETS=${PWD}/${2}
+OUT=${PWD}/${3}
 
-cat ${IN}/binaries | while read filename; do
+cat ${TARGETS}/binaries | while read filename; do
     mkdir -p $(dirname ${filename})
     strip -o ${OUT}/${filename} ${IN}/${filename}
 done
