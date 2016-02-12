@@ -18,6 +18,10 @@ cd ${IN}/src
 git checkout ${TAG}
 ./make.bash
 cp -a ${IN}/bin ${IN}/pkg ${IN}/src ${OUT}
-find ${OUT} -type d -name testdata -exec rm -rf '{}' \;
+
+find ${OUT} -type d -name testdata | while read testdata; do
+    rm -rf ${testdata}
+done
+
 find ${OUT} -type f -name '*_test.go' -exec rm -f '{}' \;
 find ${OUT} -type f -name '*.bash' -exec rm -f '{}' \;
