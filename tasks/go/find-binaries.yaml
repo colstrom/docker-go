@@ -1,0 +1,13 @@
+---
+platform: linux
+image: docker:///package/file
+inputs:
+  - name: ci
+  - name: compiled
+outputs:
+  - name: found
+run:
+  path: ci/scripts/go/find-binaries
+  args:
+    - compiled
+    - found
