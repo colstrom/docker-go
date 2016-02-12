@@ -1,0 +1,15 @@
+---
+platform: linux
+image: docker:///contains/upx
+inputs:
+  - ci
+  - found
+  - stripped
+outputs:
+  - packed
+run:
+  path: ci/scripts/go/pack
+  args:
+    - stripped
+    - found
+    - packed
