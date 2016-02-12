@@ -1,0 +1,10 @@
+---
+platform: linux
+image: docker:///lang/go:build
+inputs:
+  - name: ci
+  - name: src
+outputs:
+  - name: compiled
+run:
+  path: ci/scripts/go/compile
