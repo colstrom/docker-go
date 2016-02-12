@@ -11,5 +11,5 @@ run:
   path: ci/scripts/go/compile
   args:
     - src
-    - metadata/latest-tag
+    - metadata
     - compiled
