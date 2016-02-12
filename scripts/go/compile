@@ -5,13 +5,14 @@ set -o nounset
 set -o xtrace
 
 IN=${PWD}/${1}
-TAG=${PWD}/${2}
-OUT=${PWD}/${3}
+OUT=${PWD}/${2}
+TAG_FILE=${PWD}/${3}
+TAG=${TAG:-$(cat ${TAG_FILE})}
 
 export CGO_ENABLED=0
 export GOROOT_BOOTSTRAP=${GOROOT_BOOTSTRAP:-'/usr/lib/go'}
 export GOROOT_FINAL=${OUT}
 
 cd ${IN}/src
-git checkout $(cat ${TAG})
+git checkout ${TAG}
 ./make.bash
