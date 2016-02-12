@@ -1,6 +1,6 @@
 ---
 platform: linux
-image: docker:///contains/upx
+image: docker:///gobin/goupx
 inputs:
   - name: ci
   - name: found
