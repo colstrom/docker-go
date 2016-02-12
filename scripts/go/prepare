@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -o errexit
+set -o nounset
+set -o xtrace
+
+CI=${PWD}/${1}
+IN=${PWD}/${2}
+MODS=${PWD}/${3}
+OUT=${PWD}/${4}
+
+cp -a ${CI}/images/go/rebuild/Dockerfile ${OUT}
+cp -a ${IN} ${MODS} ${OUT}
