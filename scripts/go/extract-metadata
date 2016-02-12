@@ -8,4 +8,4 @@ IN=${PWD}/${1}
 OUT=${PWD}/${2}
 
 cd ${IN}
-git describe --tags --abbrev=0 | tee ${OUT}/latest-tag
+git describe --tags --abbrev=0 | tee ${OUT}/version
