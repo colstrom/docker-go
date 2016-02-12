@@ -1,0 +1,15 @@
+---
+platform: linux
+image: docker:///package/binutils
+inputs:
+  - name: ci
+  - name: compiled
+  - name: found
+outputs:
+  - name: stripped
+run:
+  path: ci/scripts/go/strip
+  args:
+    - compiled
+    - found
+    - stripped
