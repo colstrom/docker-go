@@ -3,6 +3,7 @@ platform: linux
 image: docker:///lang/go#build
 inputs:
   - name: ci
+  - name: metadata
   - name: src
 outputs:
   - name: compiled
@@ -10,4 +11,5 @@ run:
   path: ci/scripts/go/compile
   args:
     - src
+    - metadata/latest-tag
     - compiled
