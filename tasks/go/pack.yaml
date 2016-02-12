@@ -2,11 +2,11 @@
 platform: linux
 image: docker:///contains/upx
 inputs:
-  - ci
-  - found
-  - stripped
+  - name: ci
+  - name: found
+  - name: stripped
 outputs:
-  - packed
+  - name: packed
 run:
   path: ci/scripts/go/pack
   args:
