@@ -10,4 +10,4 @@ MODS=${PWD}/${3}
 OUT=${PWD}/${4}
 
 cp -a ${CI}/images/go/rebuild/Dockerfile ${OUT}
-cp -a ${IN} ${MODS} ${OUT}
+cp -a ${IN}/* ${MODS}/* ${OUT}
