@@ -16,4 +16,4 @@ export GOROOT_FINAL=${OUT}
 
 cd ${IN}/src
 git checkout ${TAG}
-./make.bash
+./all.bash
