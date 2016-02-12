@@ -9,6 +9,6 @@ TARGETS=${PWD}/${2}
 OUT=${PWD}/${3}
 
 cat ${TARGETS}/binaries | while read filename; do
-    mkdir -p $(dirname ${filename})
+    mkdir -p ${OUT}/$(dirname ${filename})
     strip -o ${OUT}/${filename} ${IN}/${filename}
 done
