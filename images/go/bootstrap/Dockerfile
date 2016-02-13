@@ -6,4 +6,6 @@ RUN apk-install \
                 go@community \
                 perl
 
+ENV GOROOT_BOOTSTRAP /usr/lib/go
+
 WORKDIR /build
