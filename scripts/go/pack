@@ -10,5 +10,5 @@ OUT=${PWD}/${3}
 
 cat ${TARGETS}/linked-statically | while read filename; do
     mkdir -p ${OUT}/$(dirname ${filename})
-    upx --lzma -o ${OUT}/${filename} ${IN}/${filename}
+    goupx --lzma -o ${OUT}/${filename} ${IN}/${filename}
 done
