@@ -5,8 +5,10 @@ RUN apk-install \
                 git \
                 perl
 
-ADD src /usr/lib/go/src
-ADD pkg /usr/lib/go/pkg
-ADD bin /usr/lib/go/bin
+WORKDIR /usr/lib/go
+
+ADD src src
+ADD pkg pkg
+ADD bin pkg
 
 WORKDIR /build
