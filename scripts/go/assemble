@@ -12,6 +12,6 @@ for OUT; do OUT=${PWD}/${OUT}; done
 # Each argument before the last is an IN
 while test ${#} -gt 1; do
     IN=${PWD}/${1}
-    echo cp -a ${IN} ${OUT}
+    cp -a ${IN} ${OUT}
     shift
 done
