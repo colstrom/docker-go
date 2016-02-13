@@ -1,0 +1,16 @@
+---
+platform: linux
+image: docker:///busybox#musl
+inputs:
+  - name: ci
+  - name: compiled
+  - name: stripped
+outputs:
+  - name: prepared
+run:
+  path: ci/scripts/go/assemble
+  args:
+    - ci/images/go/build/Dockerfile
+    - compiled
+    - stripped
+    - prepared
