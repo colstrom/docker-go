@@ -9,6 +9,6 @@ WORKDIR /usr/lib/go
 
 ADD src src
 ADD pkg pkg
-ADD bin pkg
+ADD bin bin
 
 WORKDIR /build
