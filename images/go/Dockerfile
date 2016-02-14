@@ -9,5 +9,6 @@ COPY bin bin
 WORKDIR /go
 
 ENV GOPATH /go
+ENV PATH ${GOPATH}/bin:/usr/lib/go/bin:${PATH}
 
 ENTRYPOINT ["go"]
