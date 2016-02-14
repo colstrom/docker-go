@@ -7,6 +7,10 @@ resources:
     type: git
     source:
       uri: https://go.googlesource.com/go
+  - name: alpine
+    type: docker-image
+    source:
+      repository: colstrom/alpine
   - name: go:bootstrap
     type: docker-image
     source:
@@ -67,6 +71,8 @@ jobs:
       passed:
         - build
     - get: src
+    - get: alpine
+      trigger: true
     - get: go:build
       trigger: true
     - task: extract-metadata
