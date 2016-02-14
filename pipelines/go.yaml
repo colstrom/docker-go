@@ -1,0 +1,92 @@
+resources:
+  - name: ci
+    type: git
+    source:
+      uri: https://github.com/colstrom/docker-go
+  - name: src
+    type: git
+    source:
+      uri: https://go.googlesource.com/go
+  - name: go:bootstrap
+    type: docker-image
+    source:
+      repository: lang/go
+      tag: bootstrap
+      email: {{docker-email}}
+      username: {{docker-username}}
+      password: {{docker-password}}
+  - name: go:build
+    type: docker-image
+    source:
+      repository: lang/go
+      tag: build
+      email: {{docker-email}}
+      username: {{docker-username}}
+      password: {{docker-password}}
+  - name: go
+    type: docker-image
+    source:
+      repository: lang/go
+      email: {{docker-email}}
+      username: {{docker-username}}
+      password: {{docker-password}}
+jobs:
+- name: bootstrap
+  plan:
+  - get: ci
+    trigger: true
+  - put: go:bootstrap
+    params:
+      build: ci/images/go/bootstrap
+      cache: true
+- name: build
+  plan:
+    - get: ci
+      passed:
+        - bootstrap
+    - get: src
+      trigger: true
+    - get: go:bootstrap
+      trigger: true
+    - task: extract-metadata
+      file: ci/tasks/go/extract-metadata.yaml
+    - task: compile
+      file: ci/tasks/go/compile.yaml
+    - task: find-binaries
+      file: ci/tasks/go/find-binaries.yaml
+    - task: strip
+      file: ci/tasks/go/strip.yaml
+    - task: prepare
+      file: ci/tasks/go/prepare-build.yaml
+    - put: go:build
+      params:
+        build: prepared
+- name: release
+  plan:
+    - get: ci
+      passed:
+        - build
+    - get: src
+    - get: go:build
+      trigger: true
+    - task: extract-metadata
+      file: ci/tasks/go/extract-metadata.yaml
+    - task: compile
+      file: ci/tasks/go/compile.yaml
+      config:
+        image: docker:///lang/go#build
+    - task: find-binaries
+      file: ci/tasks/go/find-binaries.yaml
+    - task: strip
+      file: ci/tasks/go/strip.yaml
+    - task: pack
+      file: ci/tasks/go/pack.yaml
+    - task: prepare
+      file: ci/tasks/go/prepare-release.yaml
+    - put: go
+      params:
+        build: prepared
+    - put: go
+      params:
+        build: prepared
+        tag: metadata/version
