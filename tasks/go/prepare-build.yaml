@@ -11,6 +11,6 @@ run:
   path: ci/scripts/go/assemble
   args:
     - ci/images/go/build/Dockerfile
-    - compiled
-    - stripped
+    - compiled/*
+    - stripped/*
     - prepared
