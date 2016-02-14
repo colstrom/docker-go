@@ -65,6 +65,7 @@ jobs:
     - put: go:build
       params:
         build: prepared
+        cache: true
 - name: release
   plan:
     - get: ci
@@ -92,6 +93,7 @@ jobs:
     - put: go
       params:
         build: prepared
+        cache: true
     - put: go
       params:
         build: prepared
