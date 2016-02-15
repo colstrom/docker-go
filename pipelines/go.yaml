@@ -2,38 +2,38 @@ resources:
   - name: ci
     type: git
     source:
-      uri: https://github.com/colstrom/docker-go
+      uri: {{git-uri-pipeline-go}}
   - name: src
     type: git
     source:
-      uri: https://go.googlesource.com/go
+      uri: {{git-uri-upstream-go}}
   - name: alpine
     type: docker-image
     source:
-      repository: colstrom/alpine
+      repository: {{docker-image-alpine}}
   - name: go:bootstrap
     type: docker-image
     source:
-      repository: lang/go
+      repository: {{docker-image-go}}
       tag: bootstrap
-      email: {{docker-email}}
-      username: {{docker-username}}
-      password: {{docker-password}}
+      email: {{secret-docker-email}}
+      username: {{secret-docker-username}}
+      password: {{secret-docker-password}}
   - name: go:build
     type: docker-image
     source:
-      repository: lang/go
+      repository: {{docker-image-go}}
       tag: build
-      email: {{docker-email}}
-      username: {{docker-username}}
-      password: {{docker-password}}
+      email: {{secret-docker-email}}
+      username: {{secret-docker-username}}
+      password: {{secret-docker-password}}
   - name: go
     type: docker-image
     source:
-      repository: lang/go
-      email: {{docker-email}}
-      username: {{docker-username}}
-      password: {{docker-password}}
+      repository: {{docker-image-go}}
+      email: {{secret-docker-email}}
+      username: {{secret-docker-username}}
+      password: {{secret-docker-password}}
 jobs:
 - name: bootstrap
   plan:
