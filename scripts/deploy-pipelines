@@ -19,7 +19,7 @@ find pipelines -type f -name '*.yaml' -exec basename -s .yaml '{}' \; | while re
         fly unpause-pipeline --pipeline ${pipeline}
     else
         NO_SECRETS=$(mktemp)
-        awk '!/{{.*}}/' pipelines/${pipeline}.yaml > ${NO_SECRETS}
+        awk '!/{{secret-.*}}/' pipelines/${pipeline}.yaml > ${NO_SECRETS}
         fly set-pipeline --non-interactive --pipeline ${pipeline}-readonly --config ${NO_SECRETS}
         rm -f ${NO_SECRETS}
         fly unpause-pipeline --pipeline ${pipeline}-readonly
