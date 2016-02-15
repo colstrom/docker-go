@@ -5,17 +5,25 @@ set -o nounset
 
 SECRETS=${SECRETS:-'secrets.yaml'}
 
-secrets_exist() {
+file_exists() {
     set +o errexit
-    test -f ${SECRETS}
+    test -f ${1}
     status=$?
     set -o errexit
     return $status
 }
 
-find pipelines -type f -name '*.yaml' -exec basename -s .yaml '{}' \; | while read pipeline; do
-    if secrets_exist; then
-        fly set-pipeline --non-interactive --pipeline ${pipeline} --config pipelines/${pipeline}.yaml --load-vars-from secrets.yaml
+relevant_vars() {
+    set +o errexit
+    pipeline=${1}
+    file_exists pipelines/${pipeline}.vars.yaml && printf -- "--load-vars-from pipelines/${pipeline}.vars.yaml "
+    file_exists ${SECRETS} && printf -- "--load-vars-from secrets.yaml "
+    set -o errexit
+}
+
+find pipelines -type f -name '*.yaml' -exec basename -s .yaml '{}' \; | grep -v '\.vars$' | while read pipeline; do
+    if file_exists ${SECRETS}; then
+        fly set-pipeline --non-interactive --pipeline ${pipeline} --config pipelines/${pipeline}.yaml $(relevant_vars ${pipeline})
         fly unpause-pipeline --pipeline ${pipeline}
     else
         NO_SECRETS=$(mktemp)
