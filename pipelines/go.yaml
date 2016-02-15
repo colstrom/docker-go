@@ -46,8 +46,6 @@ jobs:
 - name: build
   plan:
     - get: ci
-      passed:
-        - bootstrap
     - get: src
       trigger: true
     - get: go:bootstrap
@@ -69,8 +67,6 @@ jobs:
 - name: release
   plan:
     - get: ci
-      passed:
-        - build
     - get: src
     - get: alpine
       trigger: true
