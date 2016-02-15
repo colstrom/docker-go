@@ -1,0 +1,5 @@
+---
+git-uri-upstream-go: https://go.googlesource.com/go
+git-uri-pipeline-go:  https://github.com/colstrom/docker-go
+docker-image-go: lang/go
+docker-image-alpine: colstrom/alpine
