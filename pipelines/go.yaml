@@ -46,6 +46,7 @@ jobs:
 - name: build
   plan:
     - get: ci
+      trigger: true
     - get: src
       trigger: true
     - get: go:bootstrap
@@ -67,6 +68,7 @@ jobs:
 - name: release
   plan:
     - get: ci
+      trigger: true
     - get: src
     - get: go:build
       trigger: true
