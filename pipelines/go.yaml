@@ -68,9 +68,9 @@ jobs:
   plan:
     - get: ci
     - get: src
-    - get: alpine
-      trigger: true
     - get: go:build
+      trigger: true
+    - get: alpine
       trigger: true
     - task: extract-metadata
       file: ci/tasks/go/extract-metadata.yaml
